@@ -57,7 +57,7 @@ window.addEventListener('load', () => {
 
     let voices;
     let currentVoice;
-  
+    let index = 0;
     const populateVoices = () => {
       const availableVoices = speechSynthesis.getVoices();
       voiceSelect.innerHTML = '';
@@ -91,15 +91,17 @@ window.addEventListener('load', () => {
       const selectedIndex = event.target.selectedIndex;
       currentVoice = voices[selectedIndex];
 
-      var innerTe = 
+      index = selectedIndex;
       console.log(currentVoice.voiceURI);
       console.log(JSON.stringify(currentVoice));
       document.getElementById("index").innerHTML= "<b>INDEX: </b>"+ selectedIndex ;
-        document.getElementById("chatOutput").innerHTML= "<b>VOICE NAME: </b>"+  JSON.stringify(currentVoice.voiceURI);
+    document.getElementById("chatOutput").innerHTML= "<b>VOICE NAME: </b>"+  JSON.stringify(currentVoice.voiceURI);
     });
   
     form.addEventListener('submit', event => {
       event.preventDefault();
+      document.getElementById("index").innerHTML= "<b>INDEX: </b>"+ index ;
+    document.getElementById("chatOutput").innerHTML= "<b>VOICE NAME: </b>"+  JSON.stringify(currentVoice.voiceURI);
       const toSay = input.value.trim();
       const utterance = new SpeechSynthesisUtterance(toSay);
       utterance.voice = currentVoice;
