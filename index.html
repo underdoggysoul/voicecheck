@@ -39,6 +39,12 @@
                     </p>
                     </div>
                   </div>
+                  <div class="card text-bg-danger mb-3 col-md-12">
+                    <h5 class="card-header">voices</h5>
+                    <div class="card-body">
+                    <div id="voic"></div>
+                    </div>
+                  </div>
     
             </div>
             
@@ -64,6 +70,8 @@ window.addEventListener('load', () => {
   
       availableVoices.forEach(voice => {
         const option = document.createElement('option');
+        const p = document.createElement('p');
+        p.innerHTML = JSON.stringify(voice.name);
         let optionText = `${voice.name} (${voice.lang})`;
         if (voice.default) {
           optionText += ' [default]';
@@ -77,6 +85,7 @@ window.addEventListener('load', () => {
         }
         option.textContent = optionText;
         voiceSelect.appendChild(option);
+        document.getElementById("index").appendChild(p);
       });
       voices = availableVoices;
       console.log(voices);
